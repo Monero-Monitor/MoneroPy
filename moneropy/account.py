@@ -5,12 +5,13 @@
 # this software is subject to the license terms in the LICENSE file found in the
 # top-level directory of this distribution.
 
+from os import environ
 from . import mnemonic as _mn
 from . import cryptonote as _cn
 from . import base58 as _b58
 from . import utils as _utils
 
-ADDRESS_VERSION = "12"
+ADDRESS_VERSION = "%02x" % int(environ.get('BASE58_PREFIX', 18)) # prefix
 
 def get_view_key(sk):
     '''Computes view key for input secret key.'''
